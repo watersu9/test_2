@@ -22,7 +22,7 @@ const Home = () => {
         </Text>
       </View>
       <Pressable
-        style={styles.search}
+        style={styles.searchButton}
         onPress={() => navigation.navigate("Exercisevideo")}
       >
         <View style={styles.bg} />
@@ -48,6 +48,19 @@ const Home = () => {
           source={require("../assets/rightarrow-1.png")}
         />
       </Pressable>
+      
+
+      <Pressable
+          style={[styles.communication1Icon, styles.communication1Icon]}
+          onPress={() => navigation.navigate("TrainerList")}
+      >
+        <Image
+          style={styles.communication1Icon}
+          contentFit="cover"
+          source={require("../assets/communication.png")}
+        />
+      </Pressable>
+      <Text style={[styles.text3, styles.textTypo]}>{'트레이너와 대화'}</Text>
       <HomeContainer />
       <Calendar
         style={styles.calendar}
@@ -130,7 +143,7 @@ const styles = StyleSheet.create({
     color: "rgba(25, 33, 38, 0.5)",
     textAlign: "left",
   },
-  search: {
+  searchButton: {
     top: 109,
     left: 20,
     height: 48,
@@ -182,6 +195,22 @@ const styles = StyleSheet.create({
     top: 48,
     left: 14,
   },
+  text3: {
+    top: 210,
+    left: 224,
+    lineHeight: 30,
+    fontSize: FontSize.size_xl,
+    textAlign: "center",
+    width: 125,
+    height: 36,
+  },
+  communication1Icon: {
+    top: 256,
+    left: 243,
+    width: 87,
+    height: 87,
+    position: "absolute",
+  },
   home: {
     backgroundColor: Color.colorLightcyan,
     flex: 1,
@@ -190,9 +219,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   calendar: {
-    marginTop: 420,
+    marginTop:380,
   },
 });
 
 export default Home;
+
 

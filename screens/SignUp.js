@@ -15,20 +15,20 @@ const SignUp = () => {
       <Text style={styles.text}>{`환영합니다!
 몇가지 개인정보들을
 작성해주세요`}</Text>
-      <Text style={[styles.text1, styles.textTypo1]}>*이름을 입력하세요</Text>
+      <Text style={[styles.text1, styles.textTypo1]}></Text>
       <Text style={[styles.text2, styles.textTypo1]}>
-        *이메일 주소를 입력하세요
+      
       </Text>
       <Text style={[styles.text3, styles.textTypo1]}>
-        *비밀번호를 입력하세요
+      
       </Text>
       <Text style={[styles.text4, styles.textTypo]}>
-        *비밀번호를 확인하세요
+      
       </Text>
       <Text style={[styles.text5, styles.textTypo]}>
         *당신은 헬스트레이너 이신가요 ?
       </Text>
-      <Text style={[styles.text6, styles.textTypo1]}>*닉네임을 입력하세요</Text>
+      <Text style={[styles.text6, styles.textTypo1]}></Text>
       <Component />
       <Input
         label="닉네임을 입력하세요"

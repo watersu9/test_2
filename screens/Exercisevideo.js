@@ -1,11 +1,14 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, Linking, StyleSheet, Text, View, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border, Padding } from "../GlobalStyles";
 
 const Exercisevideo = () => {
   const navigation = useNavigation();
+
+  const openYouTubeLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Failed to open URL:", err));
+  };
 
   return (
     <View style={styles.exercisevideo}>
@@ -45,21 +48,34 @@ const Exercisevideo = () => {
           source={require("../assets/rightarrow-1.png")}
         />
       </Pressable>
-      <Image
-        style={styles.gym1Icon}
-        contentFit="cover"
-        source={require("../assets/gym-1.png")}
-      />
-      <Image
-        style={styles.biceps1Icon}
-        contentFit="cover"
-        source={require("../assets/biceps.png")}
-      />
-      <Image
-        style={styles.gym2Icon}
-        contentFit="cover"
-        source={require("../assets/gym.png")}
-      />
+      <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=squat-video-link")}>
+        <Image
+          style={styles.gym1Icon}
+          contentFit="cover"
+          source={require("../assets/gym-1.png")}
+        />
+      </Pressable>
+      <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=biceps-video-link")}>
+        <Image
+          style={styles.biceps1Icon}
+          contentFit="cover"
+          source={require("../assets/biceps.png")}
+        />
+      </Pressable>
+      <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=gym2-video-link")}>
+        <Image
+          style={styles.gym2Icon}
+          contentFit="cover"
+          source={require("../assets/gym.png")}
+        />
+      </Pressable>
+      <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=standing-video-link")}>
+        <Image
+          style={styles.standing1Icon}
+          contentFit="cover"
+          source={require("../assets/standing.png")}
+        />
+      </Pressable>
       <Text style={styles.text2}>어떤 운동을 확인하시겠습니까 ?</Text>
       <Text style={[styles.text3, styles.textTypo]}>스쿼트</Text>
       <Text style={[styles.text4, styles.textTypo]}>런지</Text>
@@ -68,14 +84,9 @@ const Exercisevideo = () => {
       <Image
         style={styles.lineIcon}
         contentFit="cover"
-        source={require("../assets/Line 3.png")}
+        source={require("../assets/line-3.png")}
       />
       <View style={[styles.exercisevideoChild1, styles.lineViewLayout]} />
-      <Image
-        style={styles.standing1Icon}
-        contentFit="cover"
-        source={require("../assets/standing.png")}
-      />
       <View style={[styles.navigationBar, styles.bgLayout]}>
         <View style={[styles.bg, styles.bgLayout]} />
         <Image

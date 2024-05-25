@@ -40,7 +40,17 @@ const SNSUpload = () => {
       </View>
       <View style={styles.snsuploadChild} />
       <View style={styles.snsuploadItem} />
-
+      <Pressable
+        style={[styles.backbutton, styles.backbuttonLayout]}
+        onPress={() => navigation.navigate("Home")}
+      >
+        <View style={[styles.backbuttonChild, styles.backbuttonLayout]} />
+        <Image
+          style={styles.rightArrow1Icon}
+          contentFit="cover"
+          source={require("../assets/rightarrow-1.png")}
+        />
+      </Pressable>
       <Pressable onPress={pickImage}>
         <Image
           style={styles.mdicameraOutlineIcon}
@@ -49,12 +59,14 @@ const SNSUpload = () => {
           source={selectedImage ? { uri: selectedImage } : require("../assets/mdicameraoutline.png")}
         />
       </Pressable>
+      
       <View style={styles.snsuploadInner} />
       <Text style={[styles.text2, styles.textTypo]}>
         오늘의 운동/식단을 공유해주세요!
       </Text>
       <NavigationBar buttonExplore={require("../assets/buttonexplore1.png")} />
     </View>
+    
   );
 };
 
@@ -66,7 +78,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   text: {
-    top: 26,
+    top: 36,
     left: 137,
     fontSize: FontSize.size_5xl,
     fontWeight: "800",
@@ -76,7 +88,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   text1: {
-    top: 0,
+    top: 10,
     fontSize: FontSize.size_sm,
     left: 0,
     color: Color.colorGray_300,
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   heading: {
-    top: 41,
+    top: 51,
     left: 194,
     width: 172,
     height: 55,

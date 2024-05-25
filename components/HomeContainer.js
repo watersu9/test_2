@@ -1,9 +1,16 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { Border, Color, FontSize, FontFamily, Padding } from "../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeContainer = () => {
+  const navigation = useNavigation();
+
+  const onPressExplore = () => {
+    navigation.navigate("Exercisevideo");
+  };
+
   return (
     <View style={[styles.navigationBar, styles.bgLayout]}>
       <View style={[styles.bg, styles.bgPosition]} />
@@ -17,11 +24,13 @@ const HomeContainer = () => {
         contentFit="cover"
         source={require("../assets/buttonstatistic.png")}
       />
-      <Image
-        style={[styles.buttonexploreIcon, styles.iconLayout]}
-        contentFit="cover"
-        source={require("../assets/buttonexplore.png")}
-      />
+      <Pressable onPress={onPressExplore}>
+        <Image
+          style={[styles.buttonexploreIcon, styles.iconLayout]}
+          contentFit="cover"
+          source={require("../assets/buttonexplore.png")}
+        />
+      </Pressable>
       <View style={styles.buttonhomeactive}>
         <View style={[styles.homeParent, styles.bgPosition]}>
           <Image
@@ -110,3 +119,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomeContainer;
+
