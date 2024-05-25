@@ -12,7 +12,7 @@ const Header = () => {
           <Image
             style={styles.chevronChild}
             contentFit="cover"
-            source={require("../assets/frame-102.png")}
+            source={require("../assets/icon.png")}
           />
         </View>
         <Image

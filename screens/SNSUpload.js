@@ -1,10 +1,35 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Pressable, Alert } from "react-native";
 import { Image } from "expo-image";
+import * as ImagePicker from 'expo-image-picker';
 import NavigationBar from "../components/NavigationBar";
 import { FontFamily, FontSize, Color } from "../GlobalStyles";
 
 const SNSUpload = () => {
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const pickImage = async () => {
+    // Request permission to access the media library
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert("Permission to access camera roll is required!");
+      return;
+    }
+
+    // Launch the image picker
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setSelectedImage(result.assets[0].uri);  // Set the selected image URI
+    }
+  };
+
   return (
     <View style={styles.snsupload}>
       <View style={styles.heading}>
@@ -15,11 +40,15 @@ const SNSUpload = () => {
       </View>
       <View style={styles.snsuploadChild} />
       <View style={styles.snsuploadItem} />
-      <Image
-        style={styles.mdicameraOutlineIcon}
-        contentFit="cover"
-        source={require("../assets/mdicameraoutline.png")}
-      />
+
+      <Pressable onPress={pickImage}>
+        <Image
+          style={styles.mdicameraOutlineIcon}
+          contentFit="cover"
+          // Show selected image or the default camera icon
+          source={selectedImage ? { uri: selectedImage } : require("../assets/mdicameraoutline.png")}
+        />
+      </Pressable>
       <View style={styles.snsuploadInner} />
       <Text style={[styles.text2, styles.textTypo]}>
         오늘의 운동/식단을 공유해주세요!
@@ -109,6 +138,11 @@ const styles = StyleSheet.create({
     height: 855,
     overflow: "hidden",
   },
+  backbutton: {
+    top: 48,
+    left: 14,
+  }
 });
 
 export default SNSUpload;
+

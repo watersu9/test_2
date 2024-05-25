@@ -2,11 +2,16 @@ import * as React from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
+import { Calendar } from "react-native-calendars";
 import HomeContainer from "../components/HomeContainer";
 import { FontFamily, FontSize, Color, Border } from "../GlobalStyles";
 
 const Home = () => {
   const navigation = useNavigation();
+
+  const onDayPress = (day) => {
+    navigation.navigate("SNSUpload", { date: day.dateString });
+  };
 
   return (
     <View style={styles.home}>
@@ -16,7 +21,10 @@ const Home = () => {
           오늘도 운동하러 오셨군요 !
         </Text>
       </View>
-      <View style={styles.search}>
+      <Pressable
+        style={styles.search}
+        onPress={() => navigation.navigate("Exercisevideo")}
+      >
         <View style={styles.bg} />
         <Image
           style={[styles.icSearchIcon, styles.text2Layout]}
@@ -24,7 +32,7 @@ const Home = () => {
           source={require("../assets/ic-search.png")}
         />
         <Text style={[styles.search1, styles.text1Typo]}>Search</Text>
-      </View>
+      </Pressable>
       <View style={styles.homeChild} />
       <View style={[styles.homeItem, styles.homeLayout]} />
       <View style={[styles.homeInner, styles.homeLayout]} />
@@ -41,6 +49,10 @@ const Home = () => {
         />
       </Pressable>
       <HomeContainer />
+      <Calendar
+        style={styles.calendar}
+        onDayPress={onDayPress}
+      />
     </View>
   );
 };
@@ -177,6 +189,10 @@ const styles = StyleSheet.create({
     height: 844,
     overflow: "hidden",
   },
+  calendar: {
+    marginTop: 420,
+  },
 });
 
 export default Home;
+

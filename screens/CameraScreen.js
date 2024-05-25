@@ -1,96 +1,87 @@
-import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, View, Pressable, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Camera } from 'expo-camera';
 
-const CameraScreen = () => {
-  const navigation = useNavigation();
+const CameraScreen = ({ navigation }) => {
+  const [hasPermission, setHasPermission] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  const takePicture = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.takePictureAsync();
+      console.log(photo);
+      // You can navigate to another screen or handle the photo here
+      // navigation.navigate('SomeOtherScreen', { photo });
+    }
+  };
 
   return (
-    <View style={styles.camerascreen}>
-      <Image
-        style={styles.camerascreenChild}
-        contentFit="cover"
-        source={require("../assets/ellipse-3.png")}
-      />
-      <Pressable
-        style={[styles.backbutton, styles.backbuttonLayout]}
-        onPress={() => navigation.navigate("ServiceStart")}
+    <View style={styles.container}>
+      <Camera
+        style={styles.camera}
+        type={type}
+        ref={(ref) => setCameraRef(ref)}
       >
-        <View style={[styles.backbuttonChild, styles.backbuttonLayout]} />
-        <Image
-          style={styles.rightArrow1Icon}
-          contentFit="cover"
-          source={require("../assets/rightarrow-1.png")}
-        />
-      </Pressable>
-      <Text style={[styles.text, styles.textTypo]}>카메라 화면</Text>
-      <Text style={[styles.text1, styles.textTypo]}>측정시작</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}
+          >
+            <Text style={styles.text}> Flip </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={takePicture}>
+            <Text style={styles.text}> Take Photo </Text>
+          </TouchableOpacity>
+        </View>
+      </Camera>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  backbuttonLayout: {
-    height: 39,
-    width: 41,
-    position: "absolute",
+  container: {
+    flex: 1,
   },
-  textTypo: {
-    height: 20,
-    width: 80,
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-    textAlign: "center",
-    color: Color.colorBlack,
-    fontFamily: FontFamily.interSemiBold,
-    fontWeight: "600",
-    lineHeight: 20,
-    fontSize: FontSize.size_base,
-    left: 156,
-    position: "absolute",
+  camera: {
+    flex: 1,
   },
-  camerascreenChild: {
-    top: 673,
-    left: 138,
-    width: 116,
-    height: 116,
-    position: "absolute",
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    margin: 20,
   },
-  backbuttonChild: {
-    top: 0,
-    left: 0,
-    borderRadius: Border.br_3xs,
-    borderStyle: "solid",
-    borderColor: Color.primary,
-    borderWidth: 2,
-  },
-  rightArrow1Icon: {
-    top: 11,
-    left: 10,
-    width: 20,
-    height: 16,
-    position: "absolute",
-  },
-  backbutton: {
-    top: 45,
-    left: 15,
+  button: {
+    flex: 0.1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
   },
   text: {
-    top: 416,
-  },
-  text1: {
-    top: 797,
-  },
-  camerascreen: {
-    backgroundColor: Color.colorWhite,
-    flex: 1,
-    width: "100%",
-    height: 852,
-    overflow: "hidden",
+    fontSize: 18,
+    color: 'white',
   },
 });
 
 export default CameraScreen;
+

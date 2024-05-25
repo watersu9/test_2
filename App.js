@@ -16,15 +16,17 @@ import Mainpage from "./screens/Mainpage";
 import LogIn from "./screens/LogIn";
 import Login1 from "./screens/Login1";
 import ServiceStart from "./screens/ServiceStart";
-import CameraScreen from "./screens/CameraScreen";
 import OpenningScreen from "./screens/OpenningScreen";
 import SignUp from "./screens/SignUp";
+import CameraScreen from "./screens/CameraScreen";
 import SignUp1 from "./screens/SignUp1";
 import Home from "./screens/Home";
 import SNSUpload from "./screens/SNSUpload";
 
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import Exercisevideo from "./screens/Exercisevideo";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
@@ -87,6 +89,11 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="Exercisevideo"
+              component={Exercisevideo}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="CameraScreen"
               component={CameraScreen}
               options={{ headerShown: false }}
@@ -116,6 +123,7 @@ const App = () => {
               component={SNSUpload}
               options={{ headerShown: false }}
             />
+            
           </Stack.Navigator>
         ) : null}
       </NavigationContainer>
