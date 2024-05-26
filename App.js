@@ -17,6 +17,8 @@ import SignUp1 from './screens/SignUp1';
 import Home from './screens/Home';
 import Exercisevideo from './screens/Exercisevideo';
 import SNSUpload from './screens/SNSUpload';
+import Mypage from './screens/Mypage';
+import Poseestimation from './screens/Poseestimation';
 
 // New screens
 import TrainerList from './screens/TrainerList';
@@ -67,6 +69,8 @@ const App = () => {
           <Stack.Screen name="TrainerList" component={TrainerList} />
           <Stack.Screen name="TrainerRequests" component={TrainerRequests} />
           <Stack.Screen name="RegisterDiet" component={RegisterDiet} />
+          <Stack.Screen name="Mypage" component={Mypage} />
+          <Stack.Screen name="Poseestimation" component={Poseestimation} />
         </Stack.Navigator>
       ) : null}
     </NavigationContainer>

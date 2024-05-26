@@ -52,28 +52,28 @@ const Exercisevideo = () => {
         <Image
           style={styles.gym1Icon}
           contentFit="cover"
-          source={require("../assets/gym-1.png")}
+          source={require("../assets/squat.png")}
         />
       </Pressable>
       <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=biceps-video-link")}>
         <Image
           style={styles.biceps1Icon}
           contentFit="cover"
-          source={require("../assets/biceps.png")}
+          source={require("../assets/dumbbelcurl.png")}
         />
       </Pressable>
       <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=gym2-video-link")}>
         <Image
           style={styles.gym2Icon}
           contentFit="cover"
-          source={require("../assets/gym.png")}
+          source={require("../assets/lunge.png")}
         />
       </Pressable>
       <Pressable onPress={() => openYouTubeLink("https://www.youtube.com/watch?v=standing-video-link")}>
         <Image
           style={styles.standing1Icon}
           contentFit="cover"
-          source={require("../assets/standing.png")}
+          source={require("../assets/shoulderpress.png")}
         />
       </Pressable>
       <Text style={styles.text2}>어떤 운동을 확인하시겠습니까 ?</Text>
@@ -89,11 +89,16 @@ const Exercisevideo = () => {
       <View style={[styles.exercisevideoChild1, styles.lineViewLayout]} />
       <View style={[styles.navigationBar, styles.bgLayout]}>
         <View style={[styles.bg, styles.bgLayout]} />
-        <Image
-          style={[styles.buttonprofileIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/buttonprofile.png")}
-        />
+        <Pressable
+          style={[styles.buttonprofile, styles.iconLayout]}
+          onPress={() => navigation.navigate("Mypage")}
+        >
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/profile.png")}
+          />
+        </Pressable>
         <Image
           style={[styles.buttonstatisticIcon, styles.iconLayout]}
           contentFit="cover"
@@ -333,7 +338,11 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
   },
-  buttonprofileIcon: {
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  buttonprofile: {
     left: 286,
     top: 20,
     width: 24,
@@ -384,9 +393,9 @@ const styles = StyleSheet.create({
   exercisevideo: {
     backgroundColor: Color.colorLightcyan,
     flex: 1,
-    width: "100%",
     height: 844,
     overflow: "hidden",
+    width: "100%",
   },
 });
 

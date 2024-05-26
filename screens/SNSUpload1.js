@@ -8,15 +8,15 @@ const SNSUpload1 = () => {
   return (
     <View style={styles.snsupload}>
       <View style={[styles.back, styles.backLayout]}>
-        <View style={[styles.backChild, styles.backLayout]} />
+        <View style={[styles.backChild, styles.lineViewBorder]} />
         <Image
           style={styles.iconChevronleft}
           contentFit="cover"
           source={require("../assets/icon--chevronleft.png")}
         />
       </View>
-      <View style={[styles.snsuploadChild, styles.snsuploadBg]} />
-      <View style={[styles.snsuploadItem, styles.snsuploadBg]} />
+      <View style={[styles.snsuploadChild, styles.snsuploadPosition]} />
+      <View style={[styles.snsuploadItem, styles.snsuploadPosition]} />
       <View style={styles.snsuploadInner} />
       <Image
         style={[
@@ -33,7 +33,7 @@ const SNSUpload1 = () => {
         source={require("../assets/gameiconsqueencrown.png")}
       />
       <View style={[styles.back1, styles.backLayout]}>
-        <View style={[styles.backChild, styles.backLayout]} />
+        <View style={[styles.backChild, styles.lineViewBorder]} />
         <Image
           style={styles.iconChevronleft}
           contentFit="cover"
@@ -43,16 +43,17 @@ const SNSUpload1 = () => {
       <Text style={[styles.allPosts, styles.allPostsPosition]}>
         Today’s Post
       </Text>
-      <Image
-        style={styles.shapeIcon}
-        contentFit="cover"
-        source={require("../assets/shape.png")}
-      />
       <Text style={[styles.joshuaLTheGameContainer, styles.allPostsPosition]}>
         <Text style={styles.text1}>{`지수뿡 | `}</Text>
         <Text style={styles.text2}>{`오늘 식단 !!
 `}</Text>
       </Text>
+      <Image
+        style={styles.likeIcon}
+        contentFit="cover"
+        source={require("../assets/like.png")}
+      />
+      <View style={[styles.lineView, styles.lineViewBorder]} />
       <NavigationBar buttonExplore={require("../assets/buttonexplore2.png")} />
     </View>
   );
@@ -62,10 +63,15 @@ const styles = StyleSheet.create({
   backLayout: {
     height: 39,
     width: 39,
+  },
+  lineViewBorder: {
+    borderColor: Color.primary,
+    borderStyle: "solid",
     position: "absolute",
   },
-  snsuploadBg: {
+  snsuploadPosition: {
     backgroundColor: Color.colorWhite,
+    left: -1,
     position: "absolute",
   },
   gameIconsqueenCrownLayout: {
@@ -86,11 +92,11 @@ const styles = StyleSheet.create({
   },
   backChild: {
     top: 0,
-    borderRadius: Border.br_3xs,
-    borderStyle: "solid",
-    borderColor: Color.primary,
-    borderWidth: 1,
     left: 0,
+    borderRadius: Border.br_3xs,
+    borderWidth: 1,
+    height: 39,
+    width: 39,
   },
   iconChevronleft: {
     marginTop: -6.5,
@@ -104,16 +110,15 @@ const styles = StyleSheet.create({
     left: 17,
     top: 24,
     width: 39,
+    position: "absolute",
   },
   snsuploadChild: {
-    top: 66,
+    top: 71,
     width: 390,
-    height: 66,
-    left: 0,
+    height: 537,
   },
   snsuploadItem: {
     top: 135,
-    left: -1,
     width: 391,
     height: 405,
   },
@@ -125,11 +130,11 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   materialSymbolspersonOutlinIcon: {
-    top: 83,
+    top: 89,
     left: 17,
   },
   text: {
-    top: 85,
+    top: 91,
     left: 51,
     fontFamily: FontFamily.interExtraBold,
     color: Color.colorBlack,
@@ -139,13 +144,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   gameIconsqueenCrown: {
-    top: 82,
+    top: 88,
     left: 109,
   },
   back1: {
     left: 18,
     top: 24,
     width: 39,
+    position: "absolute",
   },
   allPosts: {
     marginTop: -411.5,
@@ -157,10 +163,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.latoBold,
     textAlign: "center",
   },
-  shapeIcon: {
-    width: 41,
-    height: 35,
-  },
   text1: {
     fontFamily: FontFamily.latoBlack,
     fontWeight: "800",
@@ -170,12 +172,31 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.latoLight,
   },
   joshuaLTheGameContainer: {
-    marginTop: 181.5,
+    marginTop: 208.5,
     width: "88.46%",
-    left: "5.9%",
+    left: "6.15%",
     lineHeight: 18,
     textAlign: "left",
     fontSize: FontSize.size_xl,
+  },
+  likeIcon: {
+    height: "4.07%",
+    width: "10.26%",
+    top: "65.03%",
+    right: "85.9%",
+    bottom: "30.9%",
+    left: "3.85%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  lineView: {
+    top: 743,
+    left: 24,
+    borderTopWidth: 1,
+    width: 341,
+    height: 1,
   },
   snsupload: {
     backgroundColor: Color.colorLightcyan,

@@ -32,7 +32,7 @@ const ServiceStart = () => {
       <View style={[styles.servicestartInner, styles.backbuttonChildBorder]} />
       <Pressable
         style={[styles.pressable, styles.pressableLayout]}
-        onPress={() => navigation.navigate("CameraScreen")}
+        onPress={() => navigation.navigate("Poseestimation")}
       >
         <View style={[styles.child, styles.pressableLayout]} />
         <Text style={[styles.text1, styles.textTypo]}>자세 측정</Text>
@@ -57,7 +57,6 @@ const ServiceStart = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   backbuttonLayout: {
     height: 39,

@@ -48,19 +48,18 @@ const Home = () => {
           source={require("../assets/rightarrow-1.png")}
         />
       </Pressable>
-      
-
       <Pressable
-          style={[styles.communication1Icon, styles.communication1Icon]}
-          onPress={() => navigation.navigate("TrainerList")}
+        style={[styles.pressable, styles.childLayout]}
+        onPress={() => navigation.navigate("TrainerList")}
       >
+        <View style={[styles.child, styles.childLayout]} />
+        <Text style={[styles.text3, styles.textTypo]}>전문가와 상담</Text>
         <Image
           style={styles.communication1Icon}
           contentFit="cover"
           source={require("../assets/communication.png")}
         />
       </Pressable>
-      <Text style={[styles.text3, styles.textTypo]}>{'트레이너와 대화'}</Text>
       <HomeContainer />
       <Calendar
         style={styles.calendar}

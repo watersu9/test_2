@@ -64,7 +64,18 @@ const SNSUpload = () => {
       <Text style={[styles.text2, styles.textTypo]}>
         오늘의 운동/식단을 공유해주세요!
       </Text>
-      <NavigationBar buttonExplore={require("../assets/buttonexplore1.png")} />
+      <Pressable
+        style={[styles.backbutton, styles.backbuttonLayout]}
+        onPress={() => navigation.navigate("ServiceStart")}
+      >
+      <View style={[styles.backbuttonChild, styles.backbuttonLayout]} />
+      <Image
+        style={styles.rightArrow1Icon}
+        contentFit="cover"
+         source={require("../assets/rightarrow-1.png")}
+      />
+      </Pressable>
+      <NavigationBar buttonExplore={require("../assets/buttonexplore.png")} />
     </View>
     
   );
