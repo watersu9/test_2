@@ -3,9 +3,45 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Frame = () => {
   const navigation = useNavigation();
+// 맨 처음 화면에 마운팅 될 때만 부르고 싶다면?
+  React.useEffect(() => {
+    console.log('마운팅');
+    
+    async function verify() {
+    const token = await AsyncStorage.getItem('authToken');
+
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/check", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+      });    
+
+      const data = await response.json();
+
+      if (data.code == 200) {
+
+        Alert.alert("Success", "Login successful!");
+        navigation.navigate("ServiceStart");
+      } else {
+        Alert.alert("Error", data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.log("Error", "An error occurred. Please try again.");
+    }
+  };
+    
+
+    verify()
+
+
+}, []);
 
   return (
     <Pressable

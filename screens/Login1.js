@@ -1,18 +1,52 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable, Alert } from "react-native";
 import { Image } from "expo-image";
 import { Input } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { Border, FontFamily, Color, FontSize } from "../GlobalStyles";
+import { useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//처음 로그인
 const Login1 = () => {
   const navigation = useNavigation();
+  const [userid, setuserid] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userid,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.code == 200) {
+
+        await AsyncStorage.setItem('authToken', data.token);
+
+        Alert.alert("Success", "Login successful!");
+        navigation.navigate("ServiceStart");
+      } else {
+        Alert.alert("Error", data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.log("Error", "An error occurred. Please try again.");
+    }
+  };
 
   return (
     <View style={styles.login}>
       <Pressable
         style={[styles.rectangleParent, styles.groupChildLayout]}
-        onPress={() => navigation.navigate("ServiceStart")}
+        onPress={handleLogin}
       >
         <View style={[styles.groupChild, styles.childPosition]} />
         <Text style={[styles.text, styles.textTypo]}>로그인</Text>
@@ -38,14 +72,19 @@ const Login1 = () => {
         </Text>
       </Text>
       <Input
-        label="이메일주소를 입력하세요"
+        label="이메일주소를 입력하세요" 
         inputStyle={{}}
         containerStyle={styles.groupTextInputInput}
+        value={userid}
+        onChangeText={setuserid}
       />
       <Input
         label="비밀번호를 입력하세요"
         inputStyle={{}}
         containerStyle={styles.groupTextInput1Input}
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
       />
       <View style={[styles.parent, styles.backbuttonLayout]}>
         <Text style={[styles.text2, styles.text2FlexBox]}>반갑습니다 !</Text>

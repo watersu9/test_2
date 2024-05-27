@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import ButtonPrimary from "../components/ButtonPrimary";
 import Input1 from "../components/Input1";
 import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
-
+//추가 로그인
 const LogIn = () => {
   const navigation = useNavigation();
 
