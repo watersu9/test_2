@@ -1,8 +1,10 @@
 import * as React from "react";
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import { StyleSheet, View, Pressable, Text,Linking } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+
+
 
 const Poseestimation = () => {
   const navigation = useNavigation();
@@ -23,7 +25,7 @@ const Poseestimation = () => {
       </Pressable>
       <Pressable
         style={[styles.shoulderpressbutton, styles.shoulderpressbuttonLayout]}
-        onPress={() => navigation.navigate("CameraScreen")}
+        onPress={() => Linking.openURL("https://taeyoung0823.github.io/")}
       >
         <Image
           style={[
@@ -59,7 +61,7 @@ const Poseestimation = () => {
       </Pressable>
       <Pressable
         style={[styles.dumbbelcurlbutton, styles.lungebuttonPosition]}
-        onPress={() => navigation.navigate("CameraScreen")}
+        onPress={() => Linking.openURL("https://storage.googleapis.com/tfjs-models/demos/pose-detection/index.html?model=movenet")}
       >
         <Image
           style={[
@@ -70,11 +72,16 @@ const Poseestimation = () => {
           source={require("../assets/Ellipse.png")}
         />
         <Image
-          style={styles.dumbbelcurlIcon}
+          style={styles.biceps1Icon}
           contentFit="cover"
           source={require("../assets/dumbbelcurl.png")}
         />
       </Pressable>
+        <Image
+          style={styles.dumbbelcurlIcon}
+          contentFit="cover"
+          source={require("../assets/dumbbelcurl.png")}
+        />
       <Text style={[styles.text, styles.textTypo1]}>
         어떤 운동을 확인하시겠습니까 ?
       </Text>
@@ -92,7 +99,7 @@ const Poseestimation = () => {
       />
       <Pressable
         style={[styles.lungebutton, styles.lungebuttonPosition]}
-        onPress={() => navigation.navigate("CameraScreen")}
+        onPress={() => navigation.navigate("Gotolocalhost")}
       >
         <Image
           style={[

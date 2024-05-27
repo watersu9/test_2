@@ -19,6 +19,7 @@ import Exercisevideo from './screens/Exercisevideo';
 import SNSUpload from './screens/SNSUpload';
 import Mypage from './screens/Mypage';
 import Poseestimation from './screens/Poseestimation';
+import CreatePostScreen from './screens/CreatePostScreen';
 
 // New screens
 import TrainerList from './screens/TrainerList';
@@ -64,7 +65,7 @@ const App = () => {
           <Stack.Screen name="SignUp1" component={SignUp1} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Exercisevideo" component={Exercisevideo} />
-          <Stack.Screen name="SNSUpload" component={SNSUpload} />
+          <Stack.Screen name="CreatePostScreen" component={CreatePostScreen} />
           {/* New screens for the trainer functionality */}
           <Stack.Screen name="TrainerList" component={TrainerList} />
           <Stack.Screen name="TrainerRequests" component={TrainerRequests} />

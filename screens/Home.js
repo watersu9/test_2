@@ -10,7 +10,7 @@ const Home = () => {
   const navigation = useNavigation();
 
   const onDayPress = (day) => {
-    navigation.navigate("SNSUpload", { date: day.dateString });
+    navigation.navigate("CreatePostScreen", { date: day.dateString });
   };
 
   return (
@@ -223,5 +223,6 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
+
 
 
